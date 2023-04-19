@@ -1,0 +1,16 @@
+$primary-color: #e71d36ff;
+$secondary-color: #678d58;
+$bg-color: #f4fec1ff;
+$text-color: #12130fff;
+
+@font-face {
+    font-family: "Bree Serif";
+    src: url("assets/bree-serif.ttf") format("truetype");
+}
+
+body {
+    background-color: $bg-color;
+    color: $text-color;
+
+    font-family: "Bree Serif", serif;
+}
