@@ -1,6 +1,7 @@
 use std::time::Duration;
 
 use leptos::*;
+use tracing::info;
 
 // TODO: Seperate stuff into different files.
 // TODO: Implement the duration changer.
@@ -12,6 +13,8 @@ use leptos::*;
 #[component]
 fn App(cx: Scope) -> impl IntoView {
     let (timer, set_timer) = create_signal(cx, Timer::new(Duration::from_secs(10)));
+
+    info!("App started.");
 
     view! {
         cx,
@@ -52,6 +55,7 @@ struct Timer {
 impl Timer {
     /// Creates a new timer with the given duration.
     fn new(duration: Duration) -> Self {
+        info!("Creating new timer with duration: {:?}", duration);
         Self {
             time_left: duration.as_secs() as i32,
             total_time: duration.as_secs() as i32,
@@ -98,18 +102,21 @@ fn TimerStatusChanger(
         cx,
         <button
                 on:click=move |_| {
+                    info!("Start button clicked, Starting timer.");
                     start_timer(timer, set_timer);
                 }>"Start Timer"</button>
 
             <button
                 on:click=move |_| {
                     set_timer.update(|timer| {
+                        info!("Stop button clicked, setting the timer to stop.");
                         timer.is_timer_running = false;
                     });
                 }>"Stop Timer"</button>
 
             <button
                 on:click=move |_| {
+                    info!("Reset button clicked, Resetting timer.");
                     set_timer.update(|timer| {
                         timer.time_left = timer.total_time;
                         timer.is_timer_running = true;
@@ -147,8 +154,10 @@ fn start_timer(timer: ReadSignal<Timer>, timer_setter: WriteSignal<Timer>) {
     // We don't need to explicitly stop the timer, because we set the timeout 
     // in the end of the function.
     if !timer.get().is_timer_running {
+        info!("Timer is not running. Stopping timer.");
         return;
     }
+    
 
     // Subtract one from the time left.
     timer_setter.update(move |timer| {
@@ -157,6 +166,7 @@ fn start_timer(timer: ReadSignal<Timer>, timer_setter: WriteSignal<Timer>) {
 
     // If the time left is less than or equal to zero, then we need to stop the timer.
     if timer.get().time_left <= 0 {
+        info!("Timer is less than or is 0. Stopping timer.");
         timer_setter.update(|timer| {
             timer.is_timer_running = false;
         });
@@ -172,8 +182,9 @@ fn start_timer(timer: ReadSignal<Timer>, timer_setter: WriteSignal<Timer>) {
 
 
 pub fn main() {
-    _ = console_log::init_with_level(log::Level::Debug);
+    // Set up panic messages and tracing.
     console_error_panic_hook::set_once();
+    tracing_wasm::set_as_global_default();
 
     mount_to_body(|cx| {
         view! {
