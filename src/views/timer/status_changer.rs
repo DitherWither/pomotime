@@ -1,12 +1,12 @@
 //! This module contains the view for `TimerStatusChanger`.
-//! 
+//!
 //! This view allows the user to change the status of the timer
 //! between running, stopped, and reset.
-//! 
+//!
 //! # Example
-//! 
+//!
 //! Inside a view:
-//! 
+//!
 //! ```html
 //! <TimerStatusChanger timer=timer set_timer=timer/>
 //! ```
@@ -14,7 +14,7 @@
 use leptos::*;
 use tracing::info;
 
-use crate::timer::{Timer, start_timer};
+use crate::timer::{start_timer, Timer};
 
 /// A component that allows the user to change the status of a timer.
 ///
@@ -24,7 +24,7 @@ use crate::timer::{Timer, start_timer};
 ///
 /// * `timer` - The getter for the timer.
 /// * `set_timer` - The setter for the timer.
-#[component] 
+#[component]
 pub fn TimerStatusChanger(
     cx: Scope,
     timer: ReadSignal<Timer>,

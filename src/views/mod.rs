@@ -1,5 +1,5 @@
 //! Leptos views for PomoTime
-//! 
+//!
 //! This crate contains the views for PomoTime.
 
 pub mod app;
