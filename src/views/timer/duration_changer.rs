@@ -11,7 +11,7 @@
 //! 
 //! 
 
-use std::time::Duration;
+use chrono::Duration;
 
 use leptos::*;
 use tracing::info;
@@ -43,11 +43,12 @@ pub fn TimerDurationChanger(
 
         set_a(duration_string);
 
+        let duration = Duration::minutes(duration as i64);
+
         if duration != timer.get().total_time {
             info!("Setting timer to new duration: {}", duration);
             set_timer.update(|timer| {
-                // TODO: Change the durations to be minutes instead of seconds.
-                *timer = Timer::new(Duration::from_secs(duration as u64));
+                *timer = Timer::new(duration);
             });
         } else {
             info!("Duration is the same as the current duration. Doing nothing.");

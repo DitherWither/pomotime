@@ -18,7 +18,7 @@
 //! });
 //! ```
 
-use std::time::Duration;
+use chrono::Duration;
 
 use leptos::*;
 use tracing::info;
@@ -29,10 +29,10 @@ use crate::timer::Timer;
 /// The main app view
 #[component]
 pub fn App(cx: Scope) -> impl IntoView {
-    let (timer, set_timer) = create_signal(cx, Timer::new(Duration::from_secs(30)));
+    let (timer, set_timer) = create_signal(cx, Timer::new(Duration::seconds(30)));
 
     info!("App started.");
-
+ 
     view! {
         cx,
         <div>
