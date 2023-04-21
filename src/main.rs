@@ -4,15 +4,13 @@ use leptos::*;
 use tracing::info;
 
 // TODO: Seperate stuff into different files.
-// TODO: Implement the duration changer.
 // TODO: Display time in MM:SS format.
 // TODO: Improve styling
-
 
 /// The main app view
 #[component]
 fn App(cx: Scope) -> impl IntoView {
-    let (timer, set_timer) = create_signal(cx, Timer::new(Duration::from_secs(10)));
+    let (timer, set_timer) = create_signal(cx, Timer::new(Duration::from_secs(30)));
 
     info!("App started.");
 
@@ -22,7 +20,7 @@ fn App(cx: Scope) -> impl IntoView {
             <h1> "PomoTime" </h1>
             <h2> "WIP, Most stuff won't work" </h2>
 
-            <TimerDurationChanger set_timer=set_timer/>
+            <TimerDurationChanger timer=timer set_timer=set_timer/>
             <TimerStatusDisplay timer=timer/>
             <TimerStatusChanger timer=timer set_timer=set_timer/>
 
@@ -64,13 +62,12 @@ impl Timer {
     }
 }
 
-
 /// A component that displays the status of a timer.
-/// 
+///
 /// This displays the time left, the total time, and whether or not the timer is running.
-/// 
+///
 /// # Arguments
-/// 
+///
 /// * `timer` - The getter for the timer.
 #[component]
 fn TimerStatusDisplay(cx: Scope, timer: ReadSignal<Timer>) -> impl IntoView {
@@ -85,11 +82,11 @@ fn TimerStatusDisplay(cx: Scope, timer: ReadSignal<Timer>) -> impl IntoView {
 }
 
 /// A component that allows the user to change the status of a timer.
-/// 
+///
 /// This allows the user to start, stop, and reset the timer.
-/// 
+///
 /// # Arguments
-/// 
+///
 /// * `timer` - The getter for the timer.
 /// * `set_timer` - The setter for the timer.
 #[component]
@@ -126,38 +123,108 @@ fn TimerStatusChanger(
 }
 
 /// Should allow the user to decide between a short break, long break, and work.
-/// 
+///
 /// This isn't actually implemented yet. It just shows a message saying that it isn't implemented.
-/// 
+///
 /// # Arguments
-/// 
+///
 /// * `set_timer` - The setter for the timer.
 #[component]
-fn TimerDurationChanger(cx: Scope, set_timer: WriteSignal<Timer>) -> impl IntoView {
+fn TimerDurationChanger(
+    cx: Scope,
+    timer: ReadSignal<Timer>,
+    set_timer: WriteSignal<Timer>,
+) -> impl IntoView {
+    let (a, set_a) = create_signal(cx, timer.get().total_time.to_string());
+    let on_input = move |event| {
+        let duration_string = event_target_value(&event);
+
+        info!("Changing timer duration to: {}", duration_string);
+
+        let duration = duration_string
+            .parse::<i32>()
+            .expect("duration to be parsable to i32");
+
+        set_a(duration_string);
+
+        if duration != timer.get().total_time {
+            info!("Setting timer to new duration: {}", duration);
+            set_timer.update(|timer| {
+                // TODO: Change the durations to be minutes instead of seconds.
+                *timer = Timer::new(Duration::from_secs(duration as u64));
+            });
+        } else {
+            info!("Duration is the same as the current duration. Doing nothing.");
+        }
+    };
+    
+
     view! {
         cx,
         <div>
-            <h3>"Change Timer Duration: TODO"</h3>
+            <h3>"Change Timer Duration: "</h3>
+
+            // TODO: Seperate into a different component.
+            <input 
+                type="radio"
+                value="30" 
+                name="timer-duration-changer" 
+                id="work-radio-button" 
+                on:input=on_input
+                checked
+            />
+            <label 
+                for="work-radio-button"
+            >
+                "Work"
+            </label>
+
+            
+            <input 
+                type="radio" 
+                value="5" 
+                name="timer-duration-changer" 
+                id="short-break-radio-button" 
+                on:input=on_input
+            />
+
+            <label 
+                for="short-break-radio-button"
+            >
+                "Short Break"
+            </label>
+
+            <input 
+                type="radio" 
+                value="15" 
+                name="timer-duration-changer" 
+                id="long-break-radio-button" 
+                on:input=on_input
+            />
+
+            <label 
+                for="long-break-radio-button"
+            >
+                "Long Break"
+            </label>
         </div>
     }
 }
 
 /// Starts the timer.
-/// 
+///
 /// This will start the timer, and will recursively call itself every second asynchronously
 /// until the timer is done.
 fn start_timer(timer: ReadSignal<Timer>, timer_setter: WriteSignal<Timer>) {
-
     // If the timer is not running, then we don't need to do anything.
     // Just return and stop the timer.
     //
-    // We don't need to explicitly stop the timer, because we set the timeout 
+    // We don't need to explicitly stop the timer, because we set the timeout
     // in the end of the function.
     if !timer.get().is_timer_running {
         info!("Timer is not running. Stopping timer.");
         return;
     }
-    
 
     // Subtract one from the time left.
     timer_setter.update(move |timer| {
@@ -179,7 +246,6 @@ fn start_timer(timer: ReadSignal<Timer>, timer_setter: WriteSignal<Timer>) {
         Duration::from_secs(1),
     )
 }
-
 
 pub fn main() {
     // Set up panic messages and tracing.
