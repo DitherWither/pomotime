@@ -39,8 +39,8 @@ pub fn TimerDurationChanger(
         cx,
         <div>
             <h3>"Change Timer Duration: "</h3>
- 
-            <InputElement 
+
+            <InputElement
                 _value="30"
                 _id="work-radio-button"
                 _on_input=on_input
@@ -48,7 +48,7 @@ pub fn TimerDurationChanger(
                 _checked=true
             />
 
-            <InputElement 
+            <InputElement
                 _value="5"
                 _id="short-break-radio-button"
                 _on_input=on_input
@@ -56,7 +56,7 @@ pub fn TimerDurationChanger(
                 _checked=false
             />
 
-            <InputElement 
+            <InputElement
                 _value="15"
                 _id="long-break-radio-button"
                 _on_input=on_input
@@ -69,9 +69,9 @@ pub fn TimerDurationChanger(
 
 /// Displays a radio button and a label.
 /// and sets a click event handler for the radio button.
-/// 
+///
 /// # Arguments
-/// 
+///
 /// * `_value` - The value of the radio button.
 /// * `_id` - The id of the radio button.
 /// * `_on_input` - The event handler for the radio button.
@@ -87,7 +87,7 @@ fn input_element<T>(
     _checked: bool,
 ) -> impl IntoView
 where
-    T: FnMut(leptos::ev::Event) -> () + 'static,
+    T: FnMut(leptos::ev::Event) + 'static,
 {
     view! {
         cx,

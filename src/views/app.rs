@@ -1,15 +1,15 @@
 //! The main app view
-//! 
+//!
 //! This view contains the main app view.
 //! It contains the timer and the controls for the timer.
-//! 
+//!
 //! # Example
-//! 
+//!
 //! ```rust
 //! use leptos::*;
-//! 
+//!
 //! use crate::views::*;
-//! 
+//!
 //! mount_to_body(|cx| {
 //!    view! {
 //!       cx,
@@ -23,8 +23,8 @@ use chrono::Duration;
 use leptos::*;
 use tracing::info;
 
-use crate::views::*;
 use crate::timer::Timer;
+use crate::views::*;
 
 /// The main app view
 #[component]
@@ -32,7 +32,7 @@ pub fn App(cx: Scope) -> impl IntoView {
     let (timer, set_timer) = create_signal(cx, Timer::new(Duration::seconds(30)));
 
     info!("App started.");
- 
+
     view! {
         cx,
         <div>

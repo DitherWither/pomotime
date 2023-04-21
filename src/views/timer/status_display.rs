@@ -2,11 +2,11 @@
 //!
 //! This view displays the status of a timer.
 //! It displays the time left, the total time, and whether or not the timer is running.
-//! 
+//!
 //! # Example
-//! 
+//!
 //! Inside a view:
-//! 
+//!
 //! ```html
 //! <TimerStatusDisplay timer=timer/>
 //! ```
@@ -29,7 +29,7 @@ pub fn TimerStatusDisplay(cx: Scope, timer: ReadSignal<Timer>) -> impl IntoView 
         cx,
         <div>
             <p> "Time Left: " { move || { duration_to_string(timer().time_left) }}</p>
-            <p> "Total Time: " { move || { duration_to_string(timer().total_time) }}</p> 
+            <p> "Total Time: " { move || { duration_to_string(timer().total_time) }}</p>
             <p> "Is Timer Running: " { move || { timer().is_timer_running.to_string() }}</p>
         </div>
     }
