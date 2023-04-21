@@ -28,13 +28,22 @@ pub fn TimerStatusDisplay(cx: Scope, timer: ReadSignal<Timer>) -> impl IntoView 
     view! {
         cx,
         <div>
-            <p> "Time Left: " { move || { duration_to_string(timer().time_left) }}</p>
-            <p> "Total Time: " { move || { duration_to_string(timer().total_time) }}</p>
-            <p> "Is Timer Running: " { move || { timer().is_timer_running.to_string() }}</p>
+            <p> "Timer: " { move || { timer_string(timer()) }}</p>
         </div>
     }
 }
 
+fn timer_string(timer: Timer) -> String {
+    format!(
+        "{} / {}",
+        duration_to_string(timer.time_left),
+        duration_to_string(timer.total_time)
+    )
+}
+
+/// Converts a chrono duration to a pretty string.
+///
+/// The format is: `minutes:seconds`.
 fn duration_to_string(duration: Duration) -> String {
     let minutes = duration.num_minutes();
     let seconds = duration.num_seconds() - minutes * 60;
