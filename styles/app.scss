@@ -18,11 +18,15 @@ html,
 body {
   margin: 0;
   padding: 0;
+  min-height: 100vh;
 }
 
 body {
   background-color: $bg-color;
   color: $text-color;
+
+  display: flex;
+  flex-direction: column;
 
   font-family: "Bree Serif", serif;
 }
@@ -55,7 +59,7 @@ button:hover {
   margin: 1rem;
 }
 
-.navbar {
+.navbar, footer {
   background-color: $red;
   margin: 0px;
   color: $bg-color;
@@ -68,7 +72,7 @@ button:hover {
   padding: 3rem;
 }
 
-.navbar h1 {
+.navbar h1, footer h1 {
   margin: 0px;
   padding: 2rem;
 
@@ -82,6 +86,10 @@ button:hover {
   font-size: 1.5rem;
 }
 
+.navbar a, footer a {
+  color: $bg-color;
+}
+
 @media (max-width: 767px) {
   .hidden-mobile {
     display: none;
@@ -92,6 +100,8 @@ button:hover {
     gap: 4px;
     grid-auto-flow: row !important;
     width: 100%;
+
+    margin-bottom: 2rem;
   }
   .btn-row button {
     width: 98vw;
@@ -189,3 +199,23 @@ input[type="radio"]:focus {
   font-weight: bold;
   text-align: center;
 }
+
+.main-content {
+  flex: 1;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+header, footer {
+  min-height: 50px;
+}
+
+footer {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
