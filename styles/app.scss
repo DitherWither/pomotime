@@ -10,6 +10,7 @@ $text-color: #12130fff;
 @font-face {
   font-family: "Bree Serif";
   src: url("assets/bree-serif.ttf") format("truetype");
+  font-display: swap; // Use a system font while the page is loading
 }
 
 html,
@@ -145,7 +146,8 @@ input[type="radio"] {
   margin-top: 1em;
 }
 
-.radio-field:focus-within, .radio-field:focus {
+.radio-field:focus-within,
+.radio-field:focus {
   color: var(--form-control-color);
 }
 
@@ -170,21 +172,19 @@ input[type="radio"]:focus {
   outline-offset: max(2px, 0.15em);
 }
 
-
-
 .duration-changer {
-    margin-top: 1rem;
-    padding: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    flex-direction: column;
+  flex-direction: column;
 }
 
 .timer-display {
-    font-size: 4rem;
-    font-weight: bold;
-    text-align: center;
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
 }
