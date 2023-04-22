@@ -19,18 +19,14 @@
 //! });
 //! ```
 
-use chrono::Duration;
-
 use leptos::*;
 use tracing::info;
 
-use crate::timer::Timer;
 use crate::views::*;
 
 /// The main app view
 #[component]
 pub fn App(cx: Scope) -> impl IntoView {
-
     info!("App started.");
 
     view! {
