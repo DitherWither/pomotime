@@ -1,16 +1,190 @@
-$primary-color: #e71d36ff;
-$secondary-color: #678d58;
+$red: #e71d36ff;
+$green: #678d58;
 $bg-color: #f4fec1ff;
 $text-color: #12130fff;
 
+:root {
+  --form-control-color: $red;
+}
+
 @font-face {
-    font-family: "Bree Serif";
-    src: url("assets/bree-serif.ttf") format("truetype");
+  font-family: "Bree Serif";
+  src: url("assets/bree-serif.ttf") format("truetype");
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background-color: $bg-color;
-    color: $text-color;
+  background-color: $bg-color;
+  color: $text-color;
 
-    font-family: "Bree Serif", serif;
+  font-family: "Bree Serif", serif;
+}
+
+button {
+  background-color: $green;
+  color: $bg-color;
+
+  transition: 0.5s;
+
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+
+  font-size: 1.2rem;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(70%);
+}
+
+.red {
+  background-color: $red;
+}
+
+.margin-1 {
+  margin: 1rem;
+}
+
+.navbar {
+  background-color: $red;
+  margin: 0px;
+  color: $bg-color;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 3rem;
+}
+
+.navbar h1 {
+  margin: 0px;
+  padding: 2rem;
+
+  font-size: 4rem;
+}
+
+.navbar span {
+  margin: 0px;
+  padding: 2rem;
+
+  font-size: 1.5rem;
+}
+
+@media (max-width: 767px) {
+  .hidden-mobile {
+    display: none;
+  }
+
+  .btn-row {
+    display: grid;
+    gap: 4px;
+    grid-auto-flow: row !important;
+    width: 100%;
+  }
+  .btn-row button {
+    width: 98vw;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+.hcenter {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+
+  gap: 4px;
+  grid-auto-flow: column;
+}
+
+input[type="radio"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  appearance: none;
+  /* For iOS < 15 */
+  background-color: $red;
+  /* Not removed via appearance */
+  margin: 0;
+
+  font: inherit;
+  color: $red;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 50%;
+  transform: translateY(-0.075em);
+
+  display: grid;
+  place-content: center;
+}
+
+.radio-field {
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.1;
+  display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.5em;
+}
+
+.radio-field + .radio-field {
+  margin-top: 1em;
+}
+
+.radio-field:focus-within, .radio-field:focus {
+  color: var(--form-control-color);
+}
+
+input[type="radio"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--form-control-color);
+  /* Windows High Contrast Mode */
+  background-color: CanvasText;
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+input[type="radio"]:focus {
+  outline: max(2px, 0.15em) solid currentColor;
+  outline-offset: max(2px, 0.15em);
+}
+
+
+
+.duration-changer {
+    margin-top: 1rem;
+    padding: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+}
+
+.timer-display {
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
 }

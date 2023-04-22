@@ -28,7 +28,7 @@ pub fn TimerStatusDisplay(cx: Scope, timer: ReadSignal<Timer>) -> impl IntoView 
     view! {
         cx,
         <div>
-            <p> "Timer: " { move || { timer_string(timer()) }}</p>
+            <p class="timer-display"> { move || { timer_string(timer()) }} </p>
         </div>
     }
 }

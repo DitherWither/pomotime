@@ -37,32 +37,32 @@ pub fn TimerDurationChanger(
 
     view! {
         cx,
-        <div>
-            <h3>"Change Timer Duration: "</h3>
+        <div class="duration-changer">
+            <div class="duration-changer-inner">
+                <InputElement
+                    _value="30"
+                    _id="work-radio-button"
+                    _on_input=on_input
+                    _label="Work"
+                    _checked=true
+                />
 
-            <InputElement
-                _value="30"
-                _id="work-radio-button"
-                _on_input=on_input
-                _label="Work"
-                _checked=true
-            />
+                <InputElement
+                    _value="5"
+                    _id="short-break-radio-button"
+                    _on_input=on_input
+                    _label="Short Break"
+                    _checked=false
+                />
 
-            <InputElement
-                _value="5"
-                _id="short-break-radio-button"
-                _on_input=on_input
-                _label="Short Break"
-                _checked=false
-            />
-
-            <InputElement
-                _value="15"
-                _id="long-break-radio-button"
-                _on_input=on_input
-                _label="Long Break"
-                _checked=false
-            />
+                <InputElement
+                    _value="15"
+                    _id="long-break-radio-button"
+                    _on_input=on_input
+                    _label="Long Break"
+                    _checked=false
+                />
+            </div>
         </div>
     }
 }
@@ -91,19 +91,22 @@ where
 {
     view! {
         cx,
-        <input
-            type="radio"
-            value=_value
-            name="timer-duration-changer"
-            id=_id
-            on:input=_on_input
-            checked=_checked
-        />
-        <label
-            for=_id
-        >
-            { _label }
-        </label>
+        <div class="radio-field">
+            <input
+                type="radio"
+                value=_value
+                name="timer-duration-changer"
+                id=_id
+                on:input=_on_input
+                checked=_checked
+                class="margin-1"
+            />
+            <label
+                for=_id
+            >
+                { _label }
+            </label>
+        </div>
     }
 }
 

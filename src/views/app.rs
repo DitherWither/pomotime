@@ -36,8 +36,10 @@ pub fn App(cx: Scope) -> impl IntoView {
     view! {
         cx,
         <div>
-            <h1> "PomoTime" </h1>
-            <h2> "WIP, Most stuff won't work" </h2>
+            <div class="navbar">
+                <h1> "PomoTime" </h1>
+                <span class="hidden-mobile">"A simple pomodoro timer that helps you focus on your work"</span>
+            </div>
 
             <TimerDurationChanger timer=timer set_timer=set_timer/>
             <TimerStatusDisplay timer=timer/>
