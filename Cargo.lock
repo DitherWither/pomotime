@@ -1395,7 +1395,6 @@ dependencies = [
  "chrono",
  "console_error_panic_hook",
  "leptos",
- "log",
  "tracing",
  "tracing-wasm",
 ]
