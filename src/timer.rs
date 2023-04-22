@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 //! This module contains the timer and related functions.
 //!
 //! This module contains the timer struct, and the functions that are used to start the timer.

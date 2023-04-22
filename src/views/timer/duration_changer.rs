@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 //! This module contains the view `TimerDurationChanger`.
 //!
 //! This view allows the user to change the duration of the timer.

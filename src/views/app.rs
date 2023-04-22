@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 //! The main app view
 //!
 //! This view contains the main app view.

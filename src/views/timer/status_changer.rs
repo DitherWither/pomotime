@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 //! This module contains the view for `TimerStatusChanger`.
 //!
 //! This view allows the user to change the status of the timer

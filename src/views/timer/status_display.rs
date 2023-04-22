@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 //! This module contains the view for `TimerStatusDisplay`.
 //!
 //! This view displays the status of a timer.
