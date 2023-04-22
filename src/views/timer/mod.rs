@@ -10,3 +10,5 @@ pub mod status_display;
 pub use duration_changer::*;
 pub use status_changer::*;
 pub use status_display::*;
+
+// TODO: Add a sound once the timer is done
