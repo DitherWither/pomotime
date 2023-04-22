@@ -4,13 +4,13 @@
 //! This crate contains the views for PomoTime.
 
 pub mod app;
-mod timer;
-mod footer; 
-mod main_content;
+mod footer;
 mod header;
+mod main_content;
+mod timer;
 
 pub use app::*;
-use timer::*;
 use footer::*;
-use main_content::*;
 use header::*;
+use main_content::*;
+use timer::*;

@@ -22,7 +22,7 @@ pub fn Footer(cx: Scope) -> impl IntoView {
                     "This web application is open source, and licensed under the GNU General Public License. Source code and License details available in the "
                     <a href="https://github.com/DitherWither/pomotime/">"GitHub Repo."</a>
                 </p>
-            </div> 
+            </div>
         </footer>
     }
 }

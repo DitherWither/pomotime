@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 //! The header view
-//! 
+//!
 //! This view contains the header for the app.
 //! And it contains the title of the app.
 use leptos::*;
